@@ -2,25 +2,41 @@ class LinkedList
   # By implementing LinkedList#each, we can include Enumerable
   include Enumerable
 
-  attr_reader :head
+  attr_reader :head, :tail
 
   def initialize
     @head = Node.new(nil)
+    @tail = nil
   end
 
   # O(1) time
+  # prepend/add node to front/biginning of LL
   def unshift(value)
-    @head = @head.insert_before(value)
+    new_head = Node(value)
+
+    new_head.next = @head
+    @head = new_head
 
     self
   end
 
   # O(1) time
+  # remove node from front/biginning of LL
   def shift
     result = @head.value
     @head = Node(@head.next)
     result
   end
+
+  # O(1) time
+  # add node to end of LL
+  # def push(value)
+  #   new_tail = Node(value)
+  #   @tail.next = new_tail
+  #   @tail = new_tail
+
+  #   self
+  # end
 
   # O(1) time
   def empty?
@@ -61,14 +77,6 @@ class Node
   def initialize(value = nil, next_node = nil)
     @value = value
     @next  = next_node
-  end
-
-  # O(1) time
-  # Insert +value+ before this Node and return new Node
-  def insert_before(value)
-    node = Node(value)
-    @next = node
-    node
   end
 
   # O(1) time
