@@ -12,10 +12,10 @@ class LinkedList
   # O(1) time
   # prepend/add node to front/biginning of LL
   def unshift(value)
-    new_head = Node(value)
+    new_node = Node(value)
 
-    new_head.next = @head
-    @head = new_head
+    new_node.next = @head
+    @head = new_node
 
     self
   end
