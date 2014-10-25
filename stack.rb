@@ -22,6 +22,7 @@ class Stack
   # Raises an error if the stack is empty (called a "stack underflow")
   # O(1) time
   def pop
+    raise UnderflowError, "Stack is empty" if @list.empty?
     @size -= 1
     @list.shift
   end
