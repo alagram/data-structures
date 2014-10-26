@@ -37,6 +37,7 @@ class MaxStack < Stack
 
   # Return the number of items on the stack
   def size
+    super
   end
 
   # Returns the largest item on the stack
