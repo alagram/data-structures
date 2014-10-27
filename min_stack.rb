@@ -4,21 +4,23 @@ require_relative 'stack'
 # Implement a "min stack" - a stack that has a contant-time
 # "minimum" operations.
 
-def find_min(a, b)
-  a.to_f < b.to_i ? a : b
-end
+# def find_min(a, b)
+#   a.to_f < b.to_i ? a : b
+# end
 
 class MinStack < Stack
+  attr_accessor :min
+
   def initialize
     super
-    @min = Float::INFINITY
   end
+
+  @min = Float::INFINITY
 
   # Places +item+ on the top of the stack
   def push(item)
-    @min = find_min(@min, item)
-    new_min = [item, @min]
-    super(new_min)
+    new_min = [self.min, item.to_i].min
+    super([item, new_min])
   end
 
   # Removes the item on the top of the stack and returns it.
