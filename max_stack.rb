@@ -3,21 +3,20 @@ require_relative 'stack'
 
 # Implement a "max stack" - a stack that has a contant-time
 # "maximum" operations.
-def find_max(a, b)
-  a.to_f > b.to_i ? a : b
-end
 
 class MaxStack < Stack
+  attr_accessor :max
+
   def initialize
     super
-    @max = -Float::INFINITY
   end
+
+  @max = -Float::INFINITY
 
   # Places +item+ on the top of the stack
   def push(item)
-    @max = find_max(@max, item)
-    new_max = [item, @max]
-    super(new_max)
+    new_max = [self.max, item.to_i].max
+    super([item, new_max])
   end
 
   # Removes the item on the top of the stack and returns it.
