@@ -4,27 +4,17 @@ require_relative 'stack'
 # Implement a "min-max stack" - a stack that has contant-time
 # "maximum" _and_ "minimum" operations.
 
-def find_max(a, b)
-  a.to_f > b.to_i ? a : b
-end
-
-def find_min(a, b)
-  a.to_f < b.to_i ? a : b
-end
-
 
 class MinMaxStack < Stack
   def initialize
     super
-    @min = Float::INFINITY
-    @max = -Float::INFINITY
   end
 
   # Places +item+ on the top of the stack
   def push(item)
-    @min = find_min(@min, item)
-    @max = find_max(@max, item)
-    super([item, @min, @max])
+    new_min = [self.min, item].min
+    new_max = [self.max, item].max
+    super([item, new_min, new_max])
   end
 
   # Removes the item on the top of the stack and returns it.
@@ -50,12 +40,12 @@ class MinMaxStack < Stack
 
   # Returns the smallest item on the stack
   def min
-    empty? ? -Float::INFINITY : @list.head.value[1]
+    empty? ? Float::INFINITY : @list.head.value[1]
   end
 
   # Returns the largest item on the stack
   # O(1) time
   def max
-    empty? ? Float::INFINITY : @list.head.value[2]
+    empty? ? -Float::INFINITY : @list.head.value[2]
   end
 end
