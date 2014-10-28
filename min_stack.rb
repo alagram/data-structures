@@ -9,17 +9,14 @@ require_relative 'stack'
 # end
 
 class MinStack < Stack
-  attr_accessor :min
 
   def initialize
     super
   end
 
-  @min = Float::INFINITY
-
   # Places +item+ on the top of the stack
   def push(item)
-    new_min = [self.min, item.to_i].min
+    new_min = [self.min, item].min
     super([item, new_min])
   end
 
