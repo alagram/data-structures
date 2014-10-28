@@ -5,13 +5,10 @@ require_relative 'stack'
 # "maximum" operations.
 
 class MaxStack < Stack
-  attr_accessor :max
 
   def initialize
     super
   end
-
-  @max = -Float::INFINITY
 
   # Places +item+ on the top of the stack
   def push(item)
