@@ -54,6 +54,12 @@ class LinkedList
     self
   end
 
+  def reverse
+    new_linked_list = LinkedList.new
+    self.each { |list| new_linked_list.unshift(list) }
+    new_linked_list
+  end
+
 end
 
 # This allows us to call Node(value) and is different
